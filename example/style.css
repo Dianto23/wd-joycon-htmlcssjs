@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    max-height: 35rem; 
+  }
+
+  footer h3{
+    padding-left: 300px;
+  }

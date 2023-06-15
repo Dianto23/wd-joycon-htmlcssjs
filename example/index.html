@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoyCon</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        canvas {
+            border:1px solid #d3d3d3;
+            background-color: #f1f1f1;
+        }
+        </style>
+</head>
+<div class="container">
+    <div class="child"></div>
+  </div>
+<body onload="startgame()">
+    <script>
+        var myGamePiece;
+        function startGame() {
+        myGamePiece = new component(30, 30, "red", 10, 120);
+        myGameArea.start();
+}
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 480;
+        this.canvas.height = 270;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.interval = setInterval(updateGameArea, 20);
+    },
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+}
+
+    function component(width, height, color, x, y) {
+        this.width = width;
+        this.height = height;
+        this.speedX = 0;
+        this.speedY = 0;
+        this.x = x;
+        this.y = y;    
+        this.update = function() {
+            ctx = myGameArea.context;
+            ctx.fillStyle = color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+        this.newPos = function() {
+            this.x += this.speedX;
+            this.y += this.speedY;        
+        }    
+    }
+    
+    function updateGameArea() {
+        myGameArea.clear();
+        myGamePiece.newPos();    
+        myGamePiece.update();
+    }
+    
+    function moveup() {
+        myGamePiece.speedY -= 1; 
+    }
+    
+    function movedown() {
+        myGamePiece.speedY += 1; 
+    }
+    
+    function moveleft() {
+        myGamePiece.speedX -= 1; 
+    }
+    
+    function moveright() {
+        myGamePiece.speedX += 1; 
+    }
+    </script>
+    <div style="text-align:center;width:480px;">
+      <button onclick="moveup()">UP</button><br><br>
+      <button onclick="moveleft()">LEFT</button>
+      <button onclick="moveright()">RIGHT</button><br><br>
+      <button onclick="movedown()">DOWN</button>
+    </div>
+    
+    <footer>
+        <h3>21430088</h3>
+        <h3>Dianto</h3>
+        <h3>https://github.com/Dianto23/wd-joycon-htmlcssjs.git</h3>
+    </footer>
+    
+    <!-- buat komponen yang menggambarkan controller @MUTAMA -->
+    <!--    [^]                -->
+    <!-- [<][v][>]      [B][A] -->
+    <!--           atau        -->
+    <!--    [^]                -->
+    <!-- [<]   [>]      [B][A] -->
+    <!--    [v]                -->
+    <!-- controller dibagi menjadi 2 bagian, kiri untuk arah, kanan untuk aksi -->
+    <!-- banyak cara yang bisa kamu terapkan, sesuaikan saja dengan apa yang menurut kamu paling nyaman -->
+    <!-- di kolom kiri yang memuat arah bisa dibuat dengan menggunakan skema display flex atau pun memanfaatkan posisi absolute yang memuat button-button -->
+    <!-- di kolom kanan yang memuat aksi bisa dibuat dengan menggunakan skema display flex atau menggunakan block -->
+    <!-- kamu bisa menambahkan canvas dan variasi lainnya @POINPLUS, misal seperti berikut -->
+    <!-- n=======================n -->
+    <!-- |    [^]                | -->
+    <!-- | [<]   [>]      [B][A] | -->
+    <!-- |    [v]                | -->
+    <!-- n=======================n -->
+    <!-- kamu juga bisa menambahkan animasi @POINPLUS -->
+    <!-- kemudian tambahkan satu text screen di atas controller tersebut @UTAMA -->
+    <!-- wilayah text tersebut akan menampilkan apa yang kamu tekan pada controller @UTAMA -->
+    <!-- misalnya kamu menekan tombol atas, maka text tersebut akan menampilkan "atas" -->
+    <!-- kamu bisa menggunakan javascript untuk menangkap event dari controller tersebut -->
+    <!-- kamu bisa menggunakan event click, keydown, keyup, atau pun event lainnya -->
+    <!-- kamu juga bisa menggunakan event listener atau pun event handler -->
+    <!-- kamu juga bisa menggunakan event keydown untuk menangkap event keyboard -->
+    <!--     o--------------o      -->
+    <!--     | TAMPIL SINI  |      -->
+    <!--     o--------------o      -->
+    <!-- n=======================n -->
+    <!-- |    [^]                | -->
+    <!-- | [<]   [>]      [B][A] | -->
+    <!-- |    [v]                | -->
+    <!-- n=======================n -->
+    <!--  -->
+    <!-- kamu boleh menambahkan sprite di samping textscreen yang sudah ada @POINPLUS -->
+    <!-- di ujung kanan bawah, tambahkan informasi NIM, nama, dan link Github @UTAMA -->
+</body>
+</html>
